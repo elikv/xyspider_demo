@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.home.spider.xyspider.dao.IXyJsonDao">
+
+<insert id="save" parameterType="cn.home.spider.xyspider.pojo.XyJson">
+    insert into t_xy_goods(`id`,`price`,`describe`,`provcity`,`userNick`,`satime`,`smtime`)VALUES
+    (#{id},#{price},#{describe},#{provcity},#{userNick},now(),#{smtime})
+
+</insert>
+
+    <insert id="saveBatch" parameterType="cn.home.spider.xyspider.pojo.XyJson">
+    insert into t_xy_goods(`id`,`price`,`describe`,`provcity`,`userNick`,`satime`,`smtime`,`title`,`itemUrl`)VALUES
+<foreach collection="list" item="item" index="index" separator=",">
+    (
+    #{item.id},#{item.price},#{item.describe},#{item.provcity},#{item.userNick},now(),#{item.smtime},#{item.title},#{item.itemUrl}
+
+    )
+
+</foreach>
+    </insert>
+
+</mapper>
